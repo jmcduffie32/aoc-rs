@@ -5,11 +5,7 @@ fn main() -> std::io::Result<()> {
     let file = File::open("day_1_input.txt")?;
     let mut total_fuel: i32 = 0;
     for line in io::BufReader::new(file).lines() {
-        if let Ok(mass_string) = line {
-            if let Ok(mass) = mass_string.parse::<i32>() {
-                total_fuel += calculate_fuel(mass);
-            }
-        }
+        total_fuel += calculate_fuel(line?.parse::<i32>().unwrap());
     }
     println!("{}", total_fuel);
     Ok(())
